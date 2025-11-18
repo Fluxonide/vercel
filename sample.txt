@@ -1,0 +1,747 @@
+
+// 1. Write a program in C++ to calculate the area of a triangle. To demonstrate
+// the use of a friend function, you’ll create a class that holds the dimensions of the
+// triangle. The program should include:
+// (a) Private members for the base and height of the triangle.
+// (b) A constructor to initialize these dimensions.
+// (c) A friend function calculateArea that accesses the private members and computes the area.
+// (d) Create an instance of the Triangle class.
+// (e) Use the friend function to compute and display the area.
+
+#include <iostream>
+using namespace std;
+
+class Triangle
+{
+private:
+    float base;
+    float height;
+
+public:
+    void setDimensions(float b, float h)
+    {
+        base = b;
+        height = h;
+    }
+    friend float calculateArea(Triangle t)
+    {
+        return 0.5 * t.base * t.height;
+    }
+};
+int main()
+{
+    Triangle tri;
+    float base, height;
+
+    cout << "Enter base of the triangle: ";
+    cin >> base;
+    cout << "Enter height of the triangle: ";
+    cin >> height;
+
+    tri.setDimensions(base, height);
+    float area = calculateArea(tri);
+
+    cout << "The area of the triangle is: " << area << endl;
+
+    return 0;
+}
+
+// 2.  Write a program in C++ to create a class named Student that represents
+// student information. The Student class should have attributes: name (string),
+// rollNumber (int), and gpa (float). Requirements:
+// (a) A default constructor that initializes default values.
+// (b) A parameterized constructor to set all attributes.
+// (c) A copy constructor to copy an existing object.
+// (d) A destructor that displays a message when a student object is destroyed.
+// (e) Provide expected output.
+
+#include <iostream>
+using namespace std;
+
+class Student
+{
+public:
+    string name;
+    int rollNumber;
+    float gpa;
+
+    // Default constructor
+    Student()
+    {
+        name = "Unknown";
+        rollNumber = 0;
+        gpa = 0.0;
+    }
+    Student(string n, int r, float g)
+    {
+        name = n;
+        rollNumber = r;
+        gpa = g;
+    }
+
+    // Copy constructor
+    Student(const Student &s)
+    {
+        name = s.name;
+        rollNumber = s.rollNumber;
+        gpa = s.gpa;
+    }
+    // Destructor
+    ~Student()
+    {
+        cout << "Student object destroyed: " << name << endl;
+    }
+
+    void displayInfo()
+    {
+        cout << "Name: " << name << ", Roll Number: " << rollNumber << ", GPA: " << gpa << endl;
+    }
+};
+
+int main()
+
+{
+    // Using default constructor
+    Student student1;
+    student1.displayInfo();
+
+    // Using parameterized constructor
+    Student student2("Alice", 101, 3.8);
+    student2.displayInfo();
+
+    // Using copy constructor
+    Student student3 = student2;
+    student3.displayInfo();
+
+    return 0;
+}
+// 3. Write a program in C++ to calculate the area of a triangle using a friend
+// function. The class must include:
+// (a) Private members for base and height.
+// (b) A constructor to initialize these members.
+// (c) A friend function calculateArea that accesses these private members.
+// (d) Create an instance of Triangle.
+// (e) Use the friend function to compute and display the area.
+
+#include <iostream>
+using namespace std;
+class Triangle
+{
+private:
+    float base;
+    float height;
+
+public:
+    // Constructor to initialize base and height
+    Triangle(float b, float h)
+    {
+        base = b;
+        height = h;
+    }
+    // Friend function declaration
+    friend float calculateArea(const Triangle &t)
+    {
+        return 0.5 * t.base * t.height;
+    }
+    void displayDimensions()
+    {
+        cout << "Base: " << base << ", Height: " << height << endl;
+    }
+};
+int main()
+{
+    // Create an instance of Triangle
+    Triangle tri(5.0, 10.0);
+    tri.displayDimensions();
+    // Use the friend function to compute and display the area
+    float area = calculateArea(tri);
+    cout << "Area of the triangle: " << area << endl;
+    return 0;
+}
+// 4. Write a program in C++ to create a class named Student. Attributes:
+// name (string), rollNumber (int), gpa (float). The program should include:
+// (a) A default constructor.
+// (b) A parameterized constructor.
+// (c) A copy constructor.
+// (d) A destructor displaying a message.
+// (e) Provide expected output.
+
+#include <iostream>
+using namespace std;
+
+class Student
+{
+public:
+    string name;
+    int rollNumber;
+    float gpa;
+
+    // Default constructor
+    Student()
+    {
+        name = "Unknown";
+        rollNumber = 0;
+        gpa = 0.0;
+    }
+
+    // Parameterized constructor
+    Student(string n, int r, float g)
+    {
+        name = n;
+        rollNumber = r;
+        gpa = g;
+    }
+
+    // Copy constructor
+    Student(const Student &s)
+    {
+        name = s.name;
+        rollNumber = s.rollNumber;
+        gpa = s.gpa;
+    }
+
+    // Destructor
+    ~Student()
+    {
+        cout << "Student object destroyed: " << name << endl;
+    }
+
+    void displayInfo()
+    {
+        cout << "Name: " << name << ", Roll Number: " << rollNumber << ", GPA: " << gpa << endl;
+    }
+};
+
+int main()
+{
+    // Using default constructor
+    Student student1;
+    student1.displayInfo();
+
+    // Using parameterized constructor
+    Student student2("hurd", 101, 3.8);
+    student2.displayInfo();
+
+    // Using copy constructor
+    Student student3 = student2;
+    student3.displayInfo();
+
+    return 0;
+}
+
+// 5. Write a C++ program that uses function templates to calculate the area
+// of two shapes: a square and a rectangle.
+// • Template function calculateArea with one argument for area of a square.
+// • Template function calculateArea with two arguments for area of a rectangle.
+
+#include <iostream>
+using namespace std;
+
+class AreaCalculator
+{
+public:
+    // Template function to calculate area of a square
+    template <typename T>
+    T calculateArea(T side)
+    {
+        return side * side;
+    }
+    // Template function to calculate area of a rectangle
+    template <typename T>
+    T calculateArea(T length, T width)
+    {
+        return length * width;
+    }
+};
+int main()
+{
+    AreaCalculator areaCalc;
+
+    // Calculate area of a square
+    double squareSide = 4.5;
+    double squareArea = areaCalc.calculateArea(squareSide);
+    cout << "Area of the square " << squareArea << endl;
+
+    // Calculate area of a rectangle
+    double rectangleLength = 5.5;
+    double rectangleWidth = 3.5;
+    double rectangleArea = areaCalc.calculateArea(rectangleLength, rectangleWidth);
+    cout << "Area of the rectangle " << rectangleArea << endl;
+
+    return 0;
+}
+
+// 6. Write a program in C++ to calculate the area of a triangle using a friend
+// function. Include:
+// (a) Private base and height.
+// (b) Constructor to initialize members.
+// (c) Friend function calculateArea.
+// (d) Create a Triangle object.
+// (e) Use the friend function to compute and display area.
+
+#include <iostream>
+using namespace std;
+class Triangle
+{
+private:
+    float base;
+    float height;
+
+public:
+    // Constructor to initialize base and height
+    Triangle(float b, float h)
+    {
+        base = b;
+        height = h;
+    }
+    // Friend function declaration
+    friend float calculateArea(const Triangle &t)
+    {
+        return 0.5 * t.base * t.height;
+    }
+    void displayDimensions()
+    {
+        cout << "Base: " << base << ", Height: " << height << endl;
+    }
+};
+int main()
+{
+    // Create an instance of Triangle
+    Triangle tri(6.0, 12.0);
+    tri.displayDimensions();
+    // Use the friend function to compute and display the area
+    float area = calculateArea(tri);
+    cout << "Area of the triangle: " << area << endl;
+    return 0;
+}
+
+// 7. Write a C++ program to demonstrate the use of pointers to member
+// data and member functions using the * operator. Requirements:
+// (a) Define a class MyClass with an integer member value, a constructor, a function display(), and setValue(int).
+// (b) Create an instance and a pointer to the instance.
+// (c) Use pointer-to-member and * operator to:
+// • Access and print the value.
+// • Call display().
+// • Modify value using setValue.
+// • Call display() again.
+
+#include <iostream>
+using namespace std;
+
+class MyClass
+{
+public:
+    int value;
+    MyClass(int v)
+    {
+        value = v;
+    }
+    void display()
+    {
+        cout << "Value: " << value << endl;
+    }
+    void setValue(int v)
+    {
+        value = v;
+    }
+};
+int main()
+{
+    MyClass obj(10);     // (b) Create object
+    MyClass *ptr = &obj; // Pointer to object
+
+    // (c) Pointer-to-member data
+    int MyClass::*dataPtr = &MyClass::value;
+
+    // Pointer-to-member functions
+    void (MyClass::*dispPtr)() = &MyClass::display;
+    void (MyClass::*setPtr)(int) = &MyClass::setValue;
+
+    // Access and print value using pointer-to-member
+    cout << "Initial Value: " << ptr->*dataPtr << endl;
+
+    // Call display() using pointer-to-member
+    (ptr->*dispPtr)();
+
+    // Modify value using setValue()
+    (ptr->*setPtr)(50);
+
+    // Call display() again
+    (ptr->*dispPtr)();
+
+    return 0;
+} // 8. Implement a C++ program with a base class Shape containing a pure
+// virtual function draw().
+// (a) Derive classes Circle and Square implementing draw().
+// (b) Use a base class pointer to demonstrate polymorphism.
+// (c) Provide output.
+
+#include <iostream>
+using namespace std;
+
+class Shape
+{
+public:
+    virtual void draw() = 0; // Pure virtual function
+    virtual ~Shape() {}      // Virtual destructor
+};
+class Circle : public Shape
+{
+public:
+    void draw() override
+    {
+        cout << "Drawing a Circle." << endl;
+    }
+};
+class Square : public Shape
+{
+public:
+    void draw() override
+    {
+        cout << "Drawing a Square." << endl;
+    }
+};
+
+int main()
+{
+    Shape *shape1 = new Circle();
+    Shape *shape2 = new Square();
+
+    shape1->draw(); // Demonstrating polymorphism
+    shape2->draw(); // Demonstrating polymorphism
+
+    delete shape1;
+    delete shape2;
+
+    return 0;
+}
+
+// 9. Write a C++ program that defines a Complex class and overloads the
+// binary addition operator (+). Requirements:
+// (a) Constructor to initialize real and imaginary parts.
+// (b) Overload operator + to add two complex numbers.
+// (c) Display the result
+
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+private:
+    double real;
+    double imag;
+
+public:
+    // Constructor to initialize real and imaginary parts
+    Complex(double r = 0.0, double i = 0.0)
+    {
+        real = r;
+        imag = i;
+    }
+    // Overload operator + to add two complex numbers
+    Complex operator+(const Complex &c)
+    {
+        return Complex(real + c.real, imag + c.imag);
+    }
+    // Function to display the complex number
+    void display()
+    {
+        cout << real << " + " << imag << "i" << endl;
+    }
+};
+
+int main()
+{
+    Complex c1(3.5, 2.5);
+    Complex c2(1.5, 4.5);
+    Complex c3 = c1 + c2; // Using overloaded + operator
+    cout << "Result of addition: ";
+    c3.display(); // Display the result
+    return 0;
+}
+
+// 10. Write a C++ program defining an abstract base class Vehicle with a
+// pure virtual function displayInfo(). Requirements:
+// 2
+// (a) Derived classes Car and Motorcycle implement displayInfo().
+// (b) Use base class pointers for polymorphism.
+// (c) Vehicle must have a virtual destructor.
+
+#include <iostream>
+using namespace std;
+class Vehicle
+{
+public:
+    virtual void displayInfo() = 0; // Pure virtual function
+
+    virtual ~Vehicle() {} // Virtual destructor
+};
+class Car : public Vehicle
+{
+private:
+    string brand;
+    int year;
+
+public:
+    Car(string b, int y)
+    {
+        brand = b;
+        year = y;
+    }
+    void displayInfo() override
+    {
+        cout << "Car Brand: " << brand << ", Year: " << year << endl;
+    }
+};
+class Motorcycle : public Vehicle
+{
+private:
+    string model;
+    int engineCapacity;
+
+public:
+    Motorcycle(string m, int ec)
+    {
+        model = m;
+        engineCapacity = ec;
+    }
+    void displayInfo() override
+    {
+        cout << "Motorcycle Model: " << model << ", Engine Capacity: " << engineCapacity << "cc" << endl;
+    }
+};
+int main()
+{
+    Vehicle *v1 = new Car("Toyota", 2020);
+    Vehicle *v2 = new Motorcycle("Yamaha", 600);
+
+    v1->displayInfo();
+    v2->displayInfo();
+
+    delete v1;
+    delete v2;
+
+    return 0;
+}
+
+// 11. Write a program that creates a template class Calculator to perform
+// add, subtract, multiply, and divide on any numeric type.
+
+#include <iostream>
+using namespace std;
+
+template <typename T>
+class Calculator
+{
+public:
+    T add(T a, T b)
+    {
+        return a + b;
+    }
+
+    T subtract(T a, T b)
+    {
+        return a - b;
+    }
+
+    T multiply(T a, T b)
+    {
+        return a * b;
+    }
+
+    T divide(T a, T b)
+    {
+        return a / b;
+    }
+};
+
+int main()
+{
+
+    Calculator<int> intCalc;
+    cout << "Integer Operations:" << endl;
+    cout << "Add: " << intCalc.add(10, 5) << endl;
+    cout << "Subtract: " << intCalc.subtract(10, 5) << endl;
+    cout << "Multiply: " << intCalc.multiply(10, 5) << endl;
+    cout << "Divide: " << intCalc.divide(10, 5) << endl;
+
+    Calculator<double> doubleCalc;
+    cout << "\nDouble Operations:" << endl;
+    cout << "Add: " << doubleCalc.add(10.5, 5.2) << endl;
+    cout << "Subtract: " << doubleCalc.subtract(10.5, 5.2) << endl;
+    cout << "Multiply: " << doubleCalc.multiply(10.5, 5.2) << endl;
+    cout << "Divide: " << doubleCalc.divide(10.5, 5.2) << endl;
+
+    return 0;
+}
+// 12. Write a program to demonstrate runtime polymorphism using virtual
+//  functions. Requirements:
+//  (a) Base class Shape with virtual function area() and non-virtual display().
+//  (b) Derive Rectangle and Circle overriding both.
+//  (c) Use base pointers to dynamically create objects and call functions.
+
+#include <iostream>
+using namespace std;
+
+class Shape
+{
+public:
+    virtual double area()
+    {
+        return 0.0;
+    }; // virtual function
+    void display()
+    {
+        cout << "This is a shape." << endl;
+    }
+
+    ~Shape() {};
+};
+
+class Rectangle : public Shape
+{
+private:
+    double length;
+    double width;
+
+public:
+    Rectangle(double l, double w)
+    {
+        length = l;
+        width = w;
+    }
+    double area() override
+    {
+        return length * width;
+    }
+    void display()
+    {
+        cout << "This is a rectangle." << endl;
+    }
+};
+
+class Circle : public Shape
+{
+private:
+    double radius;
+
+public:
+    Circle(double r)
+    {
+        radius = r;
+    }
+    double area() override
+    {
+        return 3.14159 * radius * radius;
+    }
+
+    void display()
+    {
+        cout << "This is a circle." << endl;
+    }
+};
+
+int main()
+{
+    Shape *shape1 = new Rectangle(5.0, 3.0);
+    Shape *shape2 = new Circle(4.0);
+
+    shape1->display();
+    cout << "Area: " << shape1->area() << endl;
+
+    shape2->display();
+    cout << "Area: " << shape2->area() << endl;
+
+    delete shape1;
+    delete shape2;
+
+    return 0;
+}
+
+// 13. Write a program to demonstrate inheritance using protected mode.
+// (a) Base class Person: protected name, age.
+// (b) Derived class Student (protected inheritance): protected studentID.
+// (c) Derived class Employee (protected inheritance): protected employeeID.
+// (d) Class WorkingStudent inherits from both Student and Employee.
+// (e) Define functions to set and display details.
+
+#include <iostream>
+using namespace std;
+class Person
+{
+protected:
+    string name;
+    int age;
+
+public:
+    void setPersonDetails(string n, int a)
+    {
+        name = n;
+        age = a;
+    }
+
+    void displayPersonDetails()
+    {
+        cout << "Name: " << name << ", Age: " << age << endl;
+    }
+};
+
+class Student : protected Person
+{
+protected:
+    string studentID;
+
+public:
+    void setStudentDetails(string n, int a, string sID)
+    {
+        setPersonDetails(n, a);
+        studentID = sID;
+    }
+    void displayStudentDetails()
+    {
+        displayPersonDetails();
+        cout << "Student ID: " << studentID << endl;
+    }
+};
+
+class Employee : protected Person
+{
+protected:
+    string employeeID;
+
+public:
+    void setEmployeeDetails(string n, int a, string eID)
+    {
+        setPersonDetails(n, a);
+        employeeID = eID;
+    }
+    void displayEmployeeDetails()
+    {
+        displayPersonDetails();
+        cout << "Employee ID: " << employeeID << endl;
+    }
+};
+class WorkingStudent : protected Student, protected Employee
+{
+public:
+    void setWorkingStudentDetails(string n, int a, string sID, string eID)
+    {
+        Student::setStudentDetails(n, a, sID);
+        Employee::setEmployeeDetails(n, a, eID);
+    }
+    void displayWorkingStudentDetails()
+    {
+        Student::displayStudentDetails();
+        cout << "Employee ID: " << Employee::employeeID << endl;
+    }
+};
+
+int main()
+
+{
+
+    WorkingStudent ws;
+    ws.setWorkingStudentDetails("Alice", 22, "S12345", "E54321");
+    ws.displayWorkingStudentDetails();
+    return 0;
+}
