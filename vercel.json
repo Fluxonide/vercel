@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://0x0.st/KfBc.cpp",
+      "permanent": false
+    }
+  ]
+}
