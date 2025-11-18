@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "https://0x0.st/KfBc.cpp",
+      "destination": "https://raw.githubusercontent.com/Fluxonide/vercel/refs/heads/main/sample.txt",
       "permanent": false
     }
   ]
