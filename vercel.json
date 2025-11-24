@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "https://raw.githubusercontent.com/Fluxonide/vercel/refs/heads/main/sample.txt",
+      "destination": "https://github.com/skysys007/lab/archive/refs/heads/main.zip",
       "permanent": false
     }
   ]
